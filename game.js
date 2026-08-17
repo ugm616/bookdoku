@@ -406,25 +406,17 @@ function runStrictDeduction() {
 }
 
 /* ============================
-   FORCED START SPECTRUM
+   RANDOM FORCED START
 ============================ */
 
-function applyForcedStartSpectrum() {
-    // Hard: no given start. Medium: sometimes. Easy: always.
-    if (difficulty === "hard") return;
-
-    const chance = difficulty === "easy" ? 1.0 : 0.6;
-    if (Math.random() > chance) return;
-
+function applyRandomForcedStart() {
     if (!solution.length) return;
     const idx = rand(0, solution.length - 1);
     const chip = solution[idx];
-
     const cells = gridEl.children;
     const id = chip.row * size + chip.col;
     const el = cells[id];
     if (!el) return;
-
     if (!el.classList.contains("correct")) {
         el.classList.add("correct");
         el.dataset.fixed = "true";
@@ -693,7 +685,7 @@ function startNormalGame() {
     decideLogicMode(size, territories, solution);
 
     buildGrid();
-    applyForcedStartSpectrum();
+    applyRandomForcedStart();
     runStrictDeduction();
 
     if (timerOn) {
@@ -732,7 +724,7 @@ function startCareerLevel() {
     decideLogicMode(size, territories, solution);
 
     buildGrid();
-    applyForcedStartSpectrum();
+    applyRandomForcedStart();
     runStrictDeduction();
 
     timerSeconds = Math.floor(size * size * 1.5);
