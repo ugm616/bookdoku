@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bombdoku</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- OPTIONS MODAL -->
+<div id="optionsModal" class="modal visible">
+    <div class="modal-content glass">
+        <h2 class="modal-title">Bombdoku</h2>
+
+        <div class="modal-section">
+            <h3>Normal Mode</h3>
+
+            <label>Grid Size</label>
+            <select id="sizeSelect">
+                <option value="6">6 × 6</option>
+                <option value="7">7 × 7</option>
+                <option value="8">8 × 8</option>
+                <option value="9">9 × 9</option>
+                <option value="10">10 × 10</option>
+                <option value="11">11 × 11</option>
+                <option value="12">12 × 12</option>
+            </select>
+
+            <label>Difficulty</label>
+            <select id="difficultySelect">
+                <option value="easy">Easy – 5 lives</option>
+                <option value="medium">Medium – 3 lives</option>
+                <option value="hard">Hard – 1 life</option>
+            </select>
+
+            <label>Timer</label>
+            <select id="timerSelect">
+                <option value="off">Timer Off</option>
+                <option value="on">Timer On</option>
+            </select>
+
+            <button id="newGameBtn" class="modal-btn">Start Normal Game</button>
+        </div>
+
+        <div class="modal-section">
+            <h3>Career Mode</h3>
+            <button id="careerModeBtn" class="modal-btn career">Start Career Mode</button>
+        </div>
+    </div>
+</div>
+
+<!-- FLOATING OPTIONS BUTTON -->
+<button id="optionsBtn" class="options-btn">Options</button>
+
+<!-- MAIN GAME AREA -->
+<div class="game-container">
+    <div class="timer-display" id="timerDisplay">00:00</div>
+    <div class="grid-hint" id="gridHint">Arm a bomb to begin.</div>
+    <div id="grid" class="grid"></div>
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+    <div class="overlay-card">
+        <div class="overlay-title" id="overlayTitle"></div>
+        <div class="overlay-text" id="overlayText"></div>
+        <button id="overlayBtn" class="modal-btn">Continue</button>
+    </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

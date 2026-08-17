@@ -1,0 +1,239 @@
+/* IMPORT ORBITRON FONT */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+
+/* GLOBAL */
+body {
+    margin: 0;
+    background: #05060a;
+    font-family: 'Orbitron', sans-serif;
+    color: #e6f7ff;
+    overflow: hidden;
+}
+
+/* GLOBAL FORM ELEMENTS */
+select, button {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* CUSTOM SELECT (NEON CYBERPUNK) */
+select {
+    appearance: none;
+    background: rgba(0,255,200,0.08);
+    border: 2px solid #00ffc8;
+    color: #00ffc8;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-shadow: 0 0 6px #00ffc8;
+    box-shadow: 0 0 12px rgba(0,255,200,0.25);
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 16px #00ffc8;
+}
+
+select option {
+    background: #05060a;
+    color: #00ffc8;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* CUSTOM BUTTONS */
+button {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* OPTIONS BUTTON */
+.options-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #00ffc8;
+    color: #05060a;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 5;
+    font-weight: 700;
+    box-shadow: 0 0 12px #00ffc8;
+}
+
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    font-family: 'Orbitron', sans-serif;
+}
+.modal.visible {
+    display: flex;
+}
+
+.modal-content.glass {
+    background: rgba(0,255,200,0.08);
+    border: 2px solid #00ffc8;
+    box-shadow: 0 0 20px #00ffc8;
+    padding: 20px;
+    border-radius: 16px;
+    width: 360px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #00ffc8;
+    text-shadow: 0 0 10px #00ffc8;
+    font-weight: 700;
+}
+
+.modal-section {
+    margin-bottom: 20px;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(145deg, #00ffc8, #00b7ff);
+    border: none;
+    border-radius: 10px;
+    color: #05060a;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 0 12px #00ffc8;
+}
+
+.modal-btn.career {
+    background: linear-gradient(145deg, #ff3366, #ff6699);
+    box-shadow: 0 0 12px #ff3366;
+}
+
+/* GRID CONTAINER */
+.game-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* TIMER */
+.timer-display {
+    font-size: 2rem;
+    color: #00ffc8;
+    text-shadow: 0 0 12px #00ffc8;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* TERRITORY CELL */
+.cell {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #00b7ff;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+/* ANIMATED NEON GRADIENT */
+@keyframes pulse {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.35); }
+    100% { filter: brightness(1); }
+}
+
+/* BLOCKED */
+.cell.blocked {
+    background: #222638 !important;
+}
+.cell.blocked::after {
+    content: "✕";
+    color: #ff3366;
+    font-size: 1.4rem;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CHIP */
+.cell.chip {
+    background: #00b7ff !important;
+    box-shadow: 0 0 12px #00b7ff;
+}
+.cell.correct {
+    background: #00ffc8 !important;
+    box-shadow: 0 0 16px #00ffc8;
+}
+.cell.wrong {
+    background: #ff3366 !important;
+    box-shadow: 0 0 16px #ff3366;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    font-family: 'Orbitron', sans-serif;
+}
+.overlay.visible {
+    display: flex;
+}
+
+.overlay-card {
+    background: #0b0f1a;
+    padding: 20px;
+    border-radius: 14px;
+    border: 2px solid #00ffc8;
+    text-align: center;
+    width: 300px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.overlay-title.success {
+    color: #00ffc8;
+}
+.overlay-title.fail {
+    color: #ff3366;
+}
