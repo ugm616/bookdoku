@@ -40,8 +40,6 @@ let careerLevel = 1;
 let logicMode = "subtle";
 let clueMode = "heavy";
 
-let validMatrix = [];
-
 /* ============================
    UTILS
 ============================ */
@@ -408,44 +406,6 @@ function runStrictDeduction() {
 }
 
 /* ============================
-   UNIQUE SOLUTION CHECK
-============================ */
-
-function hasUniqueSolution() {
-    const valid = computeValidMatrixStrict();
-
-    let count = 0;
-
-    function dfs(row) {
-        if (row === size) {
-            count++;
-            return;
-        }
-
-        for (let c = 0; c < size; c++) {
-            if (!valid[row][c]) continue;
-
-            const id = row * size + c;
-            const t = territories.findIndex(t => t.includes(id));
-
-            const rowHas = solution.some(p => p.row === row);
-            const colHas = solution.some(p => p.col === c);
-            const territoryHas = solution.some(p => territories[t].includes(p.row * size + p.col));
-
-            if (rowHas || colHas || territoryHas) continue;
-
-            dfs(row + 1);
-
-            if (count > 1) return;
-        }
-    }
-
-    dfs(0);
-
-    return count === 1;
-}
-
-/* ============================
    VISUAL CLUE APPLICATION
 ============================ */
 
@@ -640,11 +600,6 @@ function handleDoubleClick(cell) {
 
         runStrictDeduction();
 
-        if (!hasUniqueSolution()) {
-            failGame("Puzzle lost solvability.");
-            return;
-        }
-
         if (foundCount === solution.length) {
             winGame();
             return;
@@ -711,13 +666,7 @@ function startNormalGame() {
     decideLogicMode(size, territories, solution);
 
     buildGrid();
-
     runStrictDeduction();
-
-    if (!hasUniqueSolution()) {
-        startNormalGame();
-        return;
-    }
 
     if (timerOn) {
         timerSeconds = Math.floor(size * size * (difficulty === "easy" ? 0.9 : difficulty === "medium" ? 1.2 : 1.5));
@@ -755,13 +704,7 @@ function startCareerLevel() {
     decideLogicMode(size, territories, solution);
 
     buildGrid();
-
     runStrictDeduction();
-
-    if (!hasUniqueSolution()) {
-        startCareerLevel();
-        return;
-    }
 
     timerSeconds = Math.floor(size * size * 1.5);
     updateTimerDisplay();
